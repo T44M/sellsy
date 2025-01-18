@@ -28,11 +28,16 @@ jobs:
           role-session-name: GitHubActionsSession
           aws-region: ap-northeast-1
 
+      - name: Terraformディレクトリに移動
+        run: |
+          cd terraform sellsy/
+
       - name: Terraform初期化
+        working-directory: ./terraform  # ディレクトリを指定
         run: terraform init
 
-      # Terraformプラン
       - name: Terraformプラン
+        working-directory: ./terraform  # ディレクトリを指定
         run: terraform plan
 
       # Terraformデプロイ（オプション）
