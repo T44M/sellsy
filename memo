@@ -36,3 +36,5 @@ Copyterraform/
 
 
       arn:aws:iam::203918871690:role/Github_Action
+      git remote add origin https://github.com/T44M/sellsy.git
+      git push -u origin main
