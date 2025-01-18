@@ -1,0 +1,21 @@
+# 一時ファイル
+*.log
+*.tmp
+
+# コンパイル済みバイナリ
+*.exe
+*.dll
+
+# システムファイル
+.DS_Store
+Thumbs.db
+
+# 環境設定ファイル
+.env
+config.json
+
+# node_modules ディレクトリを除外
+node_modules/
+
+# プライベートディレクトリを除外
+memo/
