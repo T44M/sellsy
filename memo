@@ -1,0 +1,38 @@
+ネットワークインフラ層
+
+構成要素:
+- VPC設定
+- サブネット
+- セキュリティグループ
+- Cloudflare連携
+
+アプリケーションインフラ層
+
+構成要素:
+- EC2インスタンス
+- EIP設定
+- Redis設定
+- MongoDB Atlas接続情報
+
+CI/CD・モニタリング層
+
+構成要素:
+- GitHub Actions設定
+- CloudWatch設定
+- Lambda関数
+- アラート設定
+Terraformのモジュール構成案：
+Copyterraform/
+  ├── modules/
+  │   ├── network/     # VPC、サブネット等
+  │   ├── compute/     # EC2、EIP等
+  │   ├── database/    # MongoDB Atlas
+  │   ├── monitoring/  # CloudWatch
+  │   └── lambda/      # Lambda関数
+  └── environments/
+      ├── dev/
+      └── prod/
+
+
+
+      arn:aws:iam::203918871690:role/Github_Action
