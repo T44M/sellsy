@@ -30,7 +30,7 @@ jobs:
 
       - name: Terraformディレクトリに移動
         run: |
-          cd terraform sellsy/
+          cd sellsy/terraform 
 
       - name: Terraform初期化
         working-directory: ./terraform  # ディレクトリを指定
