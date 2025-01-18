@@ -12,27 +12,30 @@ jobs:
       contents: read   # リポジトリ内容の読み取り権限
 
     steps:
-    # コードのチェックアウト
-    - name: コードのチェックアウト
-      uses: actions/checkout@v2
+      - name: コードのチェックアウト
+        uses: actions/checkout@v2
 
-    # AWS認証情報の設定
-    - name: AWS認証情報の設定
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: arn:aws:iam::203918871690:role/Github_Action
-        role-session-name: GitHubActionsSession
-        aws-region: ap-northeast-1  # 東京リージョンの場合
+      # Terraformのセットアップを追加
+      - name: Terraformのセットアップ
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: '1.5.7'  # 使用したいバージョンを指定（省略可）
 
-    # Terraformの初期化
-    - name: Terraform初期化
-      run: terraform init
+      - name: AWS認証情報の設定
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::203918871690:role/Github_Action
+          role-session-name: GitHubActionsSession
+          aws-region: ap-northeast-1
 
-    # Terraformプラン
-    - name: Terraformプラン
-      run: terraform plan
+      - name: Terraform初期化
+        run: terraform init
 
-    # Terraformデプロイ（オプション）
-    - name: Terraformデプロイ
-      if: github.ref == 'refs/heads/main'  # mainブランチの場合のみ実行
-      run: terraform apply -auto-approve
+      # Terraformプラン
+      - name: Terraformプラン
+        run: terraform plan
+
+      # Terraformデプロイ（オプション）
+      - name: Terraformデプロイ
+        if: github.ref == 'refs/heads/main'  # mainブランチの場合のみ実行
+        run: terraform apply -auto-approve
